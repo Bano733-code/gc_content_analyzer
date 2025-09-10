@@ -113,7 +113,11 @@ col1, col2 = st.columns([2,1])
 
 with col1:
     uploaded_file = st.file_uploader("Upload FASTA file", type=["fa","fasta","txt"]) 
-    seq_text = st.text_area("Or paste FASTA / raw sequence(s) here (optional)", height=150)
+    seq_text = st.text_area(
+        "Or paste FASTA / raw sequence(s) here (optional)", 
+        height=150,
+        value=st.session_state.get("seq_text", "")
+    )
     st.markdown("---")
     st.header("Sliding Window Settings")
     window = st.number_input("Window size (bp)", min_value=1, value=100, step=1)
@@ -131,9 +135,10 @@ with col2:
     st.write("- Try the example sequences below to test the app.")
     if st.button("Load Example FASTA"):
         example = ">seq1\nATGCGCGATATTTGGCGCGCGAATTT\n>seq2\nATATATATATATATATATATATATATATATATATATATATAT\n>seq3\nGGGGCCCCAAAATTTTNNNNNNNNNN"
-        seq_text = example
-        st.experimental_set_query_params(example_loaded="1")
+        st.session_state["seq_text"] = example  # store in session state
+        st.query_params["example_loaded"] = "1"
 
+        
 # Run analysis
 if run_button:
     sequences = []
