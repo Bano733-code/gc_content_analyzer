@@ -1,7 +1,7 @@
 # 🧬 DNA GC Content Analyzer
 
 A simple **Streamlit web app** to analyze DNA sequences for **GC content**.  
-Upload FASTA files or paste raw DNA sequences and get **summary statistics** plus **sliding-window GC plots**.
+Upload FASTA files or paste raw DNA sequences and get **summary statistics** plus **sliding-window GC plots**.n
 
 ---
 
